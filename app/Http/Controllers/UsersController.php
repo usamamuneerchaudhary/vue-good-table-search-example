@@ -8,14 +8,19 @@ use Illuminate\Http\Request;
 class UsersController extends Controller {
 
 	/**
+	 * @param Request $request
+	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
 	public function getRecords( Request $request ) {
 
 		$search_query = $request->searchTerm;
+		$perPage      = $request->per_page;
 		$users        = User::where( 'name', 'LIKE', '%' . $search_query . '%' )
-		                    ->get()
+		                    ->paginate( $perPage )
 		                    ->toArray();
+
+		
 
 		return response()->json( [
 			'users' => $users
