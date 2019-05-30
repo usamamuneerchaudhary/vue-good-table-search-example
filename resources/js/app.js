@@ -19,7 +19,9 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('vue-search', require('./components/VueSearchComponent.vue').default);
+Vue.component('vue-search', require('./components/VueSearchComponent').default);
+Vue.component('pagination', require('./components/Paginator'));
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
