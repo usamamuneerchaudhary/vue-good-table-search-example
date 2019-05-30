@@ -19,6 +19,7 @@
                                 styleClass="table table-hover table-bordered table-responsive">
                             <template slot="table-row" slot-scope="props">
                         <span v-if="props.column.field === 'S.No'">
+
                          {{ (users.per_page * (users.current_page - 1)) + (props.index + 1)
                           }}
                         </span>
@@ -27,6 +28,10 @@
                   </span>
                             </template>
                         </vue-good-table>
+                        <vue-pagination :pagination="users"
+                                        @paginate="getRecords()"
+                                        :offset="4">
+                        </vue-pagination>
                     </div>
                 </div>
             </div>
@@ -37,6 +42,7 @@
 <script>
     import Vue from 'vue';
     import VueGoodTable from 'vue-good-table';
+    import VuePagination from './Paginator';
     // import the styles
     import 'vue-good-table/dist/vue-good-table.css'
 
@@ -48,12 +54,12 @@
                 users: {
                     searchTerm: '',
                     total: 0,
-                    // per_page: 10,
+                    per_page: 5,
                     from: 1,
                     to: 0,
                     current_page: 1
                 },
-                // offset: 4,
+                offset: 4,
                 columns: [
                     {
                         label: 'S.No',
@@ -79,6 +85,9 @@
                 rows: []
             }
         },
+        components: {
+            VuePagination,
+        },
 
         mounted() {
             this.getRecords()
@@ -86,9 +95,8 @@
         methods: {
 
             getRecords() {
-
-                return axios.get(`${this.endpoint}?searchTerm=${this.users.searchTerm}`).then((response) => {
-                    this.rows = response.data.users
+                return axios.get(`${this.endpoint}?searchTerm=${this.users.searchTerm}&page=${this.users.current_page}&per_page=${this.users.per_page}`).then((response) => {
+                    this.rows = response.data.users.data
                     this.users = response.data.users
                 })
             },
