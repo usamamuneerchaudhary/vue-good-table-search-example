@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => 'http://www.vue-good-table-search-example.local/',
 
     'asset_url' => env('ASSET_URL', null),
 
