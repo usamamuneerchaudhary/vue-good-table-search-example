@@ -19,8 +19,12 @@ class UsersController extends Controller {
 		$users        = User::where( 'name', 'LIKE', '%' . $search_query . '%' )
 		                    ->paginate( $perPage )
 		                    ->toArray();
-
 		
+		if ( $search_query ) {
+			$users['searchTerm'] = $search_query ?: '';
+		} else {
+			$users['searchTerm'] = $search_query ? null : '';
+		}
 
 		return response()->json( [
 			'users' => $users
