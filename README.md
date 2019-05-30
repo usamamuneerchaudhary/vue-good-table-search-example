@@ -1,6 +1,8 @@
 # vue-good-table-search-example
 A sample project on setting up Server Side Search with Vue Good Table and Laravel
 
+<iframe src='https://gfycat.com/ifr/CalmHeavenlyAnt' frameborder='0' scrolling='no' allowfullscreen width='640' height='309'></iframe>
+
 Please note that, this example uses <a href="https://laravel.com/">Laravel</a> framework alongside <a href="https://vuejs.org/">VueJS</a> with a widely used Datatable package <a href="https://xaksis.github.io/vue-good-table/">Vue Good Table</a>. 
 
 For a complete tutorial, head over to <a href="">Implementing Server Side Search with Vue Good Table and Laravel</a> 
